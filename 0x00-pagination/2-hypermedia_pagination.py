@@ -69,11 +69,10 @@ class Server:
             prev_page = page - 1
 
         total_page = (len(dataset) + page_size - 1) // page_size
-        if (page_size + offset) > len(dataset):
-            page_size = 0
+        
 
         _dict = {
-            'page_size': page_size,
+            'page_size': len(data),
             'page': page,
             'data': data,
             'next_page': next_page,
