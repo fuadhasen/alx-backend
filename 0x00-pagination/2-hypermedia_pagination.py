@@ -58,7 +58,7 @@ class Server:
 
         data = self.get_page(page, page_size)
 
-        if endidx  >= len(dataset):
+        if endidx >= len(dataset):
             next_page = None
 
         else:
@@ -67,7 +67,7 @@ class Server:
             prev_page = None
         else:
             prev_page = page - 1
-        
+
         total_page = (len(dataset) + page_size - 1) // page_size
 
         _dict = {
@@ -79,5 +79,3 @@ class Server:
             'total_page': total_page
         }
         return _dict
-
-
