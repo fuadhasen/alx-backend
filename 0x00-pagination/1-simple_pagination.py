@@ -35,9 +35,9 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """method get_page"""
-        if isinstance(page) != int or page <= 0:
+        if not isinstance(page, int) or page <= 0:
             raise AssertionError
-        if isinstance(page_size) != int or page_size <= 0:
+        if not isinstance(page_size, int) or page_size <= 0:
             raise AssertionError
 
         start, end = index_range(page, page_size)
