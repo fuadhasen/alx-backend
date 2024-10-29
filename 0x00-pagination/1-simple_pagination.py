@@ -45,6 +45,6 @@ class Server:
                  reader = csv.reader(f)
                  dataset = [row for row in reader]
             start += 1
-            self.__dataset = dataset[start:end]
+            self.__dataset = dataset[start:end + 1]
             return self.__dataset
     
