@@ -10,27 +10,30 @@ class LRUCache(BaseCaching):
     def __init__(self):
         """child class constructor"""
         super().__init__()
+        self.od = collections.OrderedDict()
 
     def put(self, key, item):
         """method put"""
         if key is None or item is None:
             return
-        if len(self.od) >= BaseCaching.MAX_ITEMS:
-            
-            if key not in self.od.keys():
+        if key in self.cache_data:
+            self.cache_data[key] = item
+            self.od[key] = item
+        else:
+            if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 l_key = list(self.od.keys())[0]
+                del self.cache_data[l_key]
                 del self.od[l_key]
                 print('DISCARD: {}'.format(l_key))
-            else:
-                self.od[key] = item
-                self.od.move_to_end(key)
-                return
 
-        self.od[key] = item
- 
+            self.cache_data[key] = item
+            self.od[key] = item
+
+        self.od.move_to_end(key)
+
     def get(self, key):
         """method get"""
-        if key is None or self.od.get(key) is None:
+        if key is None or self.cache_data.get(key) is None:
             return
         self.od.move_to_end(key)
-        return self.od[key]
+        return self.cache_data[key]
