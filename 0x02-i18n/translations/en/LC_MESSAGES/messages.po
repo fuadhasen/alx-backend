@@ -3,12 +3,15 @@
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
-msgid ""
-msgstr ""
+msgid "home_title"
+msgstr "Welcome to Holberton"
+
+msgid "home_header"
+msgstr "Hello world!"
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-05 23:43+0530\n"
-"PO-Revision-Date: 2024-11-05 23:44+0530\n"
+"POT-Creation-Date: 2024-11-05 23:58+0530\n"
+"PO-Revision-Date: 2024-11-06 00:00+0530\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
 "Language-Team: en <LL@li.org>\n"
@@ -18,11 +21,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: 3-app.py:26
 msgid "home_title"
 msgstr "Welcome to Holberton"
 
-#: 3-app.py:27
 msgid "home_header"
 msgstr "Hello world!"
-

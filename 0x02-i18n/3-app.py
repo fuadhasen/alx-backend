@@ -25,17 +25,14 @@ def get_local():
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-home_title = gettext('home_title')
-home_header = gettext('home_header')
-
 
 @app.route('/')
 def index():
     """index function"""
-    title = "Welcome to Holberton"
-    head = "Hello world"
-    return render_template('3-index.html', title=title,
-                           head=head)
+    home_title = "Welcome to Holberton"
+    home_head = "Hello world"
+    return render_template('3-index.html', home_title=home_title,
+                           home_head=home_head)
 
 
 if __name__ == "__main__":
