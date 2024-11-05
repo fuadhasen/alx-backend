@@ -26,10 +26,10 @@ def get_local():
 
 
 @app.route('/')
-def index() -> str:
+def index():
     """index function"""
-    title = 'Welcome to Holberton'
-    head = 'Hello world'
+    title = "Welcome to Holberton"
+    head = "Hello world"
     return render_template('2-index.html', title=title,
                            head=head)
 

@@ -20,7 +20,7 @@ babel = Babel(app)
 
 
 @app.route('/')
-def index() -> str:
+def index():
     """index function"""
     title = 'Welcome to Holberton'
     head = 'Hello world'

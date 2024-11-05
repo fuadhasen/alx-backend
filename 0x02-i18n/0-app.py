@@ -2,7 +2,6 @@
 """scripts for simple flask App"""
 
 from flask import Flask, render_template
-from datetime import date, datetime, time
 
 app = Flask(__name__)
 
@@ -10,8 +9,8 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     """index function"""
-    title = 'Welcome to Holberton'
-    head = 'Hello world'
+    title = "Welcome to Holberton"
+    head = "Hello world"
     return render_template('0-index.html', title=title,
                            head=head)
 
