@@ -29,8 +29,8 @@ users = {
 def get_user():
     """get user function"""
     guser_id = request.args.get('login_as')
-    guser_id = int(guser_id)
-    if guser_id and guser_id in users:
+    if guser_id is not None and guser_id.isdigit():
+        guser_id = int(guser_id)
         return users.get(guser_id)
     return None
 
