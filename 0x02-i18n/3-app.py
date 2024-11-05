@@ -29,10 +29,7 @@ def get_local():
 @app.route('/')
 def index():
     """index function"""
-    home_title = "Welcome to Holberton"
-    home_head = "Hello world"
-    return render_template('3-index.html', home_title=home_title,
-                           home_head=home_head)
+    return render_template('3-index.html')
 
 
 if __name__ == "__main__":
