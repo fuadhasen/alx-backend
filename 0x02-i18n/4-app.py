@@ -30,7 +30,7 @@ def index():
     """index function"""
     title = "Welcome to Holberton"
     head = "Hello world"
-    return render_template('3-index.html', title=title,
+    return render_template('4-index.html', title=title,
                            head=head)
 
 
