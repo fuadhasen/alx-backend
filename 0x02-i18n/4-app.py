@@ -25,13 +25,13 @@ def get_local():
     lang = request.args.get('locale', 'en')
     if lang and lang in app.config['LANGUAGES']:
         return lang
-    
 
 
 @app.route('/')
 def index():
     """index function"""
     return render_template('4-index.html')
+
 
 if __name__ == "__main__":
     app.run()
