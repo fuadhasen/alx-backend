@@ -45,7 +45,6 @@ def get_user():
 def before_request():
     """befor request befor all function"""
     g.user = get_user()
-    
 
 
 @babel.localeselector
