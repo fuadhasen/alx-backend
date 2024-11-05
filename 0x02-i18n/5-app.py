@@ -31,7 +31,11 @@ def get_user():
     guser_id = request.args.get('login_as')
     if guser_id is not None and guser_id.isdigit():
         guser_id = int(guser_id)
-        return users.get(guser_id)
+        _dict = users.get(guser_id)
+        if _dict['locale'] in app.config['LANGUAGES']:
+            return _dict
+        _dict['locale'] = app.config['BABEL_DEFAULT_LOCALE']
+        return _dict
     return None
 
 
@@ -39,6 +43,7 @@ def get_user():
 def before_request():
     """befor request befor all function"""
     g.user = get_user()
+    
 
 
 @babel.localeselector

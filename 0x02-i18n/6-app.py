@@ -28,45 +28,42 @@ users = {
 
 def get_user():
     """get user function"""
-    guser_id = request.args.get('login_as', type=int)
-    if guser_id and guser_id in users:
-        return guser_id
+    guser_id = request.args.get('login_as')
+    if guser_id is not None and guser_id.isdigit():
+        guser_id = int(guser_id)
+        return users.get(guser_id)
     return None
 
 
 @app.before_request
 def before_request():
     """befor request befor all function"""
-    user_id = get_user()
-    if user_id:
-        g.user_id = user_id
+    g.user = get_user()
 
 
 @babel.localeselector
 def get_local():
     """localisation function"""
-    lang = request.args.get('locale', 'en')
-    if lang:
+    lang = request.args.get('locale')
+    if lang and lang in app.config['LANGUAGES']:
         return lang
 
-    if g.user_id:
-        user_local = users[g.user].get('locale')
-        if user_local:
-            return user_local
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
-  
-    
+    if g.user:
+        user_local = g.user.get('locale')
+        return user_local
+    best = request.accept_languages.best_match(app.config['LANGUAGES'])
+    if best:
+        return best
+    return app.config['BABEL_DEFAULT_LOCALE']
+
 
 
 @app.route('/')
 def index():
     """index function"""
-    title = "Welcome to Holberton"
-    head = "Hello world"
-    return render_template('5-index.html', title=title,
-                           head=head, user=g.user_id)
+
+    return render_template('5-index.html', user=g.user)
 
 
 if __name__ == "__main__":
     app.run()
-
