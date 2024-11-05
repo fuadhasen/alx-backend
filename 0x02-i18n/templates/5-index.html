@@ -7,6 +7,12 @@
 </head>
 <body>
     <h1>{{ head }}</h1>
+    {% if user %}
+    <p>You are logged in as {{ user.name }}s</p>
+    {% else %}
+    <p>You are not logged in.</p>
+    {% endif %}
+
 </body>
 </html>
 
