@@ -14,7 +14,7 @@ def index() -> str:
     """index function"""
     title = 'Welcome to Holberton'
     head = 'Hello world'
-    return render_template('index.html', title=title,
+    return render_template('0-index.html', title=title,
                            head=head)
 
 
