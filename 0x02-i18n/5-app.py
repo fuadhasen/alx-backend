@@ -32,6 +32,8 @@ def get_user():
     if guser_id is not None and guser_id.isdigit():
         guser_id = int(guser_id)
         _dict = users.get(guser_id)
+        if not _dict:
+            return None
         if _dict['locale'] in app.config['LANGUAGES']:
             return _dict
         _dict['locale'] = app.config['BABEL_DEFAULT_LOCALE']
