@@ -18,6 +18,7 @@ class Config:
 app.config.from_object(Config)
 babel = Babel(app)
 
+
 @babel.localeselector
 def get_local():
     """localisation function"""
@@ -35,4 +36,3 @@ def index() -> str:
 
 if __name__ == "__main__":
     app.run()
-
