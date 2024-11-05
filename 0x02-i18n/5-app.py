@@ -28,18 +28,17 @@ users = {
 
 def get_user():
     """get user function"""
-    guser_id = request.args.get('login_as', type=int)
+    guser_id = request.args.get('login_as')
+    guser_id = int(guser_id)
     if guser_id and guser_id in users:
-        return guser_id
+        return users.get(guser_id)
     return None
 
 
 @app.before_request
 def before_request():
     """befor request befor all function"""
-    user_id = get_user()
-    if user_id:
-        g.user = user_id
+    g.user = get_user()
 
 
 @babel.localeselector
@@ -51,10 +50,8 @@ def get_local():
 @app.route('/')
 def index():
     """index function"""
-    title = "Welcome to Holberton"
-    head = "Hello world"
-    return render_template('5-index.html', title=title,
-                           head=head, user=g.user)
+
+    return render_template('5-index.html', user=g.user)
 
 
 if __name__ == "__main__":
