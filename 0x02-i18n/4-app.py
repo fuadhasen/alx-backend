@@ -22,17 +22,16 @@ babel = Babel(app)
 @babel.localeselector
 def get_local():
     """localisation function"""
-    return request.args.get('locale', 'en')
+    lang = request.args.get('locale', 'en')
+    if lang and lang in app.config['LANGUAGES']:
+        return lang
+    
 
 
 @app.route('/')
 def index():
     """index function"""
-    title = "Welcome to Holberton"
-    head = "Hello world"
-    return render_template('4-index.html', title=title,
-                           head=head)
-
+    return render_template('4-index.html')
 
 if __name__ == "__main__":
     app.run()
