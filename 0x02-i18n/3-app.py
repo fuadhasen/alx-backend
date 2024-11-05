@@ -14,6 +14,7 @@ class Config:
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
+
 app.config.from_object(Config)
 babel = Babel(app)
 
@@ -23,8 +24,10 @@ def get_local():
     """localisation function"""
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
+
 home_title = gettext('home_title')
 home_header = gettext('home_header')
+
 
 @app.route('/')
 def index():
