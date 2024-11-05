@@ -2,15 +2,13 @@
 """scripts for simple flask App"""
 
 from flask import Flask, render_template
-from babel import numbers, dates
 from datetime import date, datetime, time
-from flask_babel import Babel, format_date, gettext
 
 app = Flask(__name__)
 
 
 @app.route('/')
-def index() -> str:
+def index():
     """index function"""
     title = 'Welcome to Holberton'
     head = 'Hello world'
