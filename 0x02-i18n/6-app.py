@@ -57,7 +57,6 @@ def get_local():
     return app.config['BABEL_DEFAULT_LOCALE']
 
 
-
 @app.route('/')
 def index():
     """index function"""
