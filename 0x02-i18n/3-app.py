@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""scripts for simple flask App"""
+"""module to make localisation
+based on Browser setting
+"""
 
 from flask import Flask, render_template, request
 from babel import numbers, dates

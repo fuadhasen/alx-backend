@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""scripts for simple flask App"""
+"""module for configuration flask app
+and get_locale with localeselector decore
+"""
 
 from flask import Flask, render_template, request
 from babel import numbers, dates
