@@ -2,7 +2,6 @@
 """scripts for simple flask App"""
 
 from flask import Flask, render_template, request, g
-from babel import numbers, dates
 from datetime import date, datetime, time
 from flask_babel import Babel, format_date, gettext
 
@@ -48,9 +47,9 @@ def get_locale():
     if lang and lang in app.config['LANGUAGES']:
         return lang
 
-    if g.user:
-        user_local = g.user.get('locale')
-        return user_local
+    if g.user and g.user.get('locale') is not None:
+        return g.user.get('locale')
+
     best = request.accept_languages.best_match(app.config['LANGUAGES'])
     if best:
         return best
