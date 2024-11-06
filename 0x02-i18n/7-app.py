@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """scripts for simple flask App"""
+from pytz import timezone
 import pytz
 from flask import Flask, render_template, request, g
 from babel import numbers, dates
@@ -44,22 +45,26 @@ def before_request():
 
 @babel.timezoneselector
 def get_timezone():
-    """infer appropriate timezone"""
+    """ infer appropriate time zone """
     timez = request.args.get('timezone')
-    try:
-        timezone = pytz.timezone(timez)
-    except pytz.exceptions.UnknownTimeZoneError:
-        timezone = None
 
-    if timezone:
-        return timezone.zone
+    if timez:
+        try:
+            return timezone(timez).zone
+        except pytz.exceptions.UnknownTimeZoneError:
+            pass
+        return timez
 
-    if g.user_id:
-        user_time = users[g.user].get('timezone')
-        if user_time:
-            return user_time
-    return request.accept_languages.best_match(app.config['BABEL_DEFAULT_TIMEZONE'])
+    if g.user and g.user.get('timezone') is not None:
+        user_time = g.user.get('timezone')
+        try:
+            return timezone(user_time).zone
+        except pytz.exceptions.UnknownTimeZoneError:
+            pass
 
+        return user_time
+    
+    return app.config['BABEL_DEFAULT_TIMEZONE']
 
 
 @babel.localeselector
