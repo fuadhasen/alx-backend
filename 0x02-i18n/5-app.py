@@ -30,9 +30,10 @@ users = {
 def get_user():
     """method to get users"""
     user_id = request.args.get('login_as')
-    if user_id not in users or not user_id:
-        return None
-    return users[user_id]
+    if user_id and user_id.isdigit():
+        user_id = int(user_id)
+        return users.get(user_id)
+    return None
 
 
 @app.before_request
@@ -40,6 +41,7 @@ def before_request():
     """method excuted befor all function"""
     user_dict = get_user()
     g.user = user_dict
+
 
 @babel.localeselector
 def get_locale():
