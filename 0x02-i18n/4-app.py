@@ -20,7 +20,7 @@ babel = Babel(app)
 
 
 @babel.localeselector
-def get_local():
+def get_locale():
     """localisation function"""
     lang = request.args.get('locale', 'en')
     if lang and lang in app.config['LANGUAGES']:

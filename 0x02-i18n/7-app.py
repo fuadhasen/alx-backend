@@ -63,7 +63,7 @@ def get_timezone():
 
 
 @babel.localeselector
-def get_local():
+def get_locale():
     """localisation function"""
     lang = request.args.get('locale', 'en')
     if lang:

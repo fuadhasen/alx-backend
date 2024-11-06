@@ -42,7 +42,7 @@ def before_request():
 
 
 @babel.localeselector
-def get_local():
+def get_locale():
     """localisation function"""
     lang = request.args.get('locale')
     if lang and lang in app.config['LANGUAGES']:

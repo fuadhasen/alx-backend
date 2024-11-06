@@ -48,7 +48,7 @@ def before_request():
 
 
 @babel.localeselector
-def get_local():
+def get_locale():
     """localisation function"""
     return request.args.get('locale', 'en')
 
