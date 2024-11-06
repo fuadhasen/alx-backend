@@ -10,6 +10,7 @@ app = Flask(__name__)
 
 
 class Config:
+    """class for app configuration"""
     LANGUAGES = ['en', 'fr']
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
@@ -27,36 +28,30 @@ users = {
 
 
 def get_user():
-    """get user function"""
-    guser_id = request.args.get('login_as')
-    if guser_id is not None and guser_id.isdigit():
-        guser_id = int(guser_id)
-        _dict = users.get(guser_id)
-        if not _dict:
-            return None
-        if _dict['locale'] in app.config['LANGUAGES']:
-            return _dict
-        _dict['locale'] = app.config['BABEL_DEFAULT_LOCALE']
-        return _dict
-    return None
+    """method to get users"""
+    user_id = request.args.get('login_as')
+    if user_id not in users or not user_id:
+        return None
+    return users[user_id]
 
 
 @app.before_request
 def before_request():
-    """befor request befor all function"""
-    g.user = get_user()
-
+    """method excuted befor all function"""
+    user_dict = get_user()
+    g.user = user_dict
 
 @babel.localeselector
 def get_locale():
     """localisation function"""
-    return request.args.get('locale', 'en')
+    lang = request.args.get('locale', 'en')
+    if lang and lang in app.config['LANGUAGES']:
+        return lang
 
 
 @app.route('/')
 def index():
     """index function"""
-
     return render_template('5-index.html', user=g.user)
 
 
