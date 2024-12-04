@@ -1,25 +1,17 @@
-// const redis = require('redis')
-import redis from 'redis'
+import {createClient, print} from 'redis';
 
-const client  = redis.createClient()
+const client = createClient();
 
+client.on('connect', () => console.log('Redis client connected connected to the server'));
 
-client.on('ready', () => {
-    console.log('Redis client connected to the server')
-})
+client.on('error', (err) => console.log(`Redis client not connected to the server: ${err.message}`));
 
-client.on('error', (err) => {
-    console.log(`Redis client not connected to the server: ${err}`)
-})
+client.subscribe('holberton school channel');
 
-
-client.subscribe('holberton school channel')
-
-// when it revieve message from publisher in this channel
-client.on('message', (channel, message) => {
-    if (message === 'KILL_SERVER') {
-        client.unsubscribe()
-        client.quit()
+client.on('message', (channel, msg) => {
+    console.log(msg);
+    if (msg === 'KILL_SERVER') {
+        client.unsubscribe('holberton school channel');
+        client.quit();
     }
-    console.log(message)
-})
+});
