@@ -1,24 +1,17 @@
-import redis from 'redis'
+import {createClient, print} from 'redis';
 
-const client = redis.createClient()
+const client = createClient();
 
-client.on('ready', () => {
-    console.log('Redis client connected to the server')
-})
+client.on('connect', () => console.log('Redis client connected connected to the server'));
 
-client.on('error', (err) => {
-    console.log(`Redis client not connected to the server: ${err}`)
-})
+client.on('error', (err) => console.log(`Redis client not connected to the server: ${err.message}`));
 
-
-// here show FIFO first call first published into subscribers
 function publishMessage(message, time) {
     setTimeout(() => {
-        console.log(`About to send ${message}`)
-        client.publish('holberton school channel', message)
-    }, time)
+        console.log(`About to send ${message}`);
+        client.publish('holberton school channel', message);
+    }, time);
 }
-
 
 publishMessage("Holberton Student #1 starts course", 100);
 publishMessage("Holberton Student #2 starts course", 200);
