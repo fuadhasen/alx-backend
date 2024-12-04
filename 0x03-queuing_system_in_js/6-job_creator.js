@@ -3,7 +3,7 @@ import { createQueue } from "kue"
 const queue = createQueue({name: 'push_notification_code'})
 
 const job = queue.create('push_notification_code', {
-    phoneNumber: 'rand',
+    phoneNumber: '966343004',
     message: 'randmssge'
 })
 
